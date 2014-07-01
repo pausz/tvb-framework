@@ -303,8 +303,24 @@ class ProjectService:
             prj.operations_started = sta
             prj.operations_error = err
             prj.operations_canceled = canceled
+            prj.disk_size = self._get_human_disk_size(prj.id)
         self.logger.debug("Displaying " + str(len(available_projects)) + " projects in UI for user " + str(user_id))
         return available_projects, pages_no
+
+
+    @staticmethod
+    def _get_human_disk_size(project_id):
+        """
+        :param project_id: ID
+        :return: a String with [number] [memory unit measure]
+        """
+        size = dao.get_project_disk_size(project_id)
+        m = ['kb', 'Mb', 'Gb']
+        exp = 0
+        while size >= 1024.0 and exp < len(m) - 1:
+            size /= 1024.0
+            exp += 1
+        return "%.1f %s" % (size, m[exp])
 
 
     @staticmethod
