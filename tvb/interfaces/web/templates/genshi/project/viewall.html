@@ -13,7 +13,7 @@
 	    <table class="list" py:if="projectsList">
 			<!-- Table header w/ pagination controls -->
 			<thead>
-				${displayPaginationControls(page_number, total_pages, 5, 'projectsForm')}
+				${displayPaginationControls(page_number, total_pages, 6, 'projectsForm')}
 				<input type="hidden" name="page" value="$page_number" id="currentPage"/>
 			
 				<tr>
@@ -28,7 +28,7 @@
 			
 			<!-- Table footer w/ pagination controls -->
 			<tfoot>
-				${displayPaginationControls(page_number, total_pages, 5, 'projectsForm')}
+				${displayPaginationControls(page_number, total_pages, 6, 'projectsForm')}
 			</tfoot>
 	
 			<tbody>
@@ -38,7 +38,7 @@
 				</tr>
 		
 				<tr class="selector-error" py:if="len(projectsList) &gt; 0 and selectedProject == None">
-					<td colspan="5"> You haven't selected a project yet. Please do so below. </td>
+					<td colspan="6"> You haven't selected a project yet. Please do so below. </td>
 				</tr>
 		
 		        <!-- Loop through all projects -->
@@ -71,7 +71,7 @@
 					</td>
 
                     <td class="disk_size">
-                        <span> ${proj.disk_size} </span>
+                        <span> ${proj.disk_size_human} </span>
                     </td>
 		        </tr>
 	        </tbody>
